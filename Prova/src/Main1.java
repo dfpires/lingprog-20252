@@ -3,7 +3,7 @@ public class Main1 {
 
        int[] guiche1 = new int[5];
        int[] guiche2 = new int[5];
-       int[] interseccao = new int[10];
+       int[] intercala = new int[10];
 
        for (int i = 0; i < guiche1.length; i++) {
            guiche1[i] = (int) (Math.random() * 6);
@@ -14,13 +14,13 @@ public class Main1 {
        // intercalação
        int pos = 0;
        for (int i = 0; i < guiche2.length; i++) {
-           interseccao[pos] = guiche1[i];
+           intercala[pos] = guiche1[i];
            pos++;
-           interseccao[pos] = guiche2[i];
+           intercala[pos] = guiche2[i];
            pos++;
        }
-       for(int i = 0; i < interseccao.length; i++) {
-           System.out.print(interseccao[i] + " ");
+       for(int i = 0; i < intercala.length; i++) {
+           System.out.print(intercala[i] + " ");
        }
        System.out.println();
         for(int i = 0; i < guiche1.length; i++) {

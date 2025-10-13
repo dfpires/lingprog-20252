@@ -1,4 +1,11 @@
 public class Main2 {
+
+    public static void exibe(int[] vetor, int tamanho){
+        for (int i = 0; i < tamanho; i++) {
+            System.out.print(vetor[i] + " ");
+        }
+    }
+
     public static void main(String[] args) {
         int[] oficina1 = new int[10];
         int[] oficina2 = new int[10];
@@ -22,16 +29,11 @@ public class Main2 {
                 }
             }
         }
-        for (int i = 0; i < pos; i++) {
-            System.out.print(interseccao[i] + " ");
-        }
+        exibe(interseccao, pos);
         System.out.println();
-        for (int i = 0; i < oficina1.length; i++) {
-            System.out.print(oficina1[i] + " ");
-        }
+        exibe(oficina1, oficina1.length);
         System.out.println();
-        for (int i = 0; i < oficina2.length; i++) {
-            System.out.print(oficina2[i] + " ");
-        }
+        exibe(oficina2, oficina2.length);
+
     }
 }

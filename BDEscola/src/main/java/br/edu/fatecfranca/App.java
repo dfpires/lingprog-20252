@@ -1,5 +1,7 @@
 package br.edu.fatecfranca;
 
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -10,6 +12,13 @@ public class App
     {
 
         AlunoDAO alunoDAO = new AlunoDAO();
-        alunoDAO.inserir("José Pedro", "1235");
+        alunoDAO.inserir("Pedro José", "675443");
+        List<String> alunos = alunoDAO.listar();
+        System.out.println("Lista de Alunos: ");
+        for (String aluno : alunos) { // para cada aluno da lista alunos
+            System.out.println(aluno); // exibe id e nome do aluno
+        }
+
+
     }
 }

@@ -42,12 +42,65 @@ public class AlunoDAO {
             while(rs.next()){ // para cada aluno
                 // adiciona id e nome na lista de alunos
                 alunos.add(rs.getInt("id") + " - " +
-                        rs.getString("nome"));
+                        rs.getString("nome") + " - " +
+                        rs.getString("cpf"));
             }
         }
         catch(SQLException e){ // tivemos um erro
             System.out.println("Erro ao listar alunos!" + e.getMessage());
         }
         return alunos; // retorna a lista de alunos
+    }
+    // função para remoção de um aluno no banco de dados
+    public void remover(int id){
+        String sql = "DELETE FROM aluno WHERE id = ?";
+        // tenta remover
+        try {
+            // obtem a conexão com o banco de dados
+            Connection conexao = ConnectionFactory.getConnection();
+            // cria uma instrução de banco de dados
+            PreparedStatement instrucao = conexao.prepareStatement(sql);
+            // define o valor do id
+            instrucao.setInt(1, id);
+            // executa a remoção
+            int nroLinhasAfetadas = instrucao.executeUpdate();
+            // testa a qtde de linhas afetadas
+            if (nroLinhasAfetadas > 0){
+                System.out.println("Aluno removido com sucesso!");
+            }
+            else {
+                System.out.println("Aluno não encontrado");
+            }
+        }
+        catch(SQLException e){ // deu erro ao remover ou ao conectar com o banco
+            System.out.println("Erro ao remover aluno " + e.getMessage());
+        }
+    }
+    // função para atualizar um aluno no banco de dados
+    public void atualizar(int id, String novoNome, String novoCpf){
+        // monta o SQL
+        String sql = "UPDATE aluno SET nome = ?, cpf = ? WHERE id = ?";
+        // tenta atualizar o aluno
+        try {
+            // abre a conexão com o banco
+            Connection conexao = ConnectionFactory.getConnection();
+            // cria uma instrução (statement)
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            // atribuir os valores (?)
+            stmt.setString(1, novoNome);
+            stmt.setString(2, novoCpf);
+            stmt.setInt(3, id);
+            // executa o comando de atualização
+            int nroLinhasAfetadas = stmt.executeUpdate();
+            if (nroLinhasAfetadas > 0){
+                System.out.println("Aluno atualizado com sucesso!");
+            }
+            else {
+                System.out.println("Aluno não encontrado");
+            }
+        }
+        catch(SQLException e){
+            System.out.println("Erro ao atualizar aluno " + e.getMessage());
+        }
     }
 }

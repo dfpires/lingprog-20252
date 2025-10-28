@@ -1,5 +1,6 @@
 package br.edu.fatecfranca;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -19,24 +20,42 @@ public class App {
             switch(opcao){
                 case 1:
                     System.out.println("Informe nome do aluno");
-                    String nome = entrada.nextLine();
+                    String nome = entrada.next();
                     System.out.println("Informe cpf do aluno");
-                    String cpf = entrada.nextLine();
+                    String cpf = entrada.next();
                     dao.inserir(nome, cpf);
                     break;
                 case 2:
                     System.out.println("Informe id do aluno");
                     int id = entrada.nextInt();
                     System.out.println("Informe nome do aluno");
-                    nome = entrada.nextLine();
+                    nome = entrada.next();
                     System.out.println("Informe cpf do aluno");
-                    cpf = entrada.nextLine();
+                    cpf = entrada.next();
                     dao.atualizar(id, nome, cpf);
                     break;
                 case 3:
                     System.out.println("Informe id do aluno");
                     id = entrada.nextInt();
                     dao.remover(id);
+                    break;
+                case 4:
+                    System.out.println("Lista de alunos");
+                    List<String> alunos = dao.listar();
+                    if (alunos.isEmpty()){ // se vetor é vazio
+                        System.out.println("Sem aluno cadastrado");
+                    }
+                    else {
+                        for (String aluno : alunos) { // para cada string aluno
+                            System.out.println(aluno); // exibe os dados dos alunos
+                        }
+                    }
+                    break;
+                case 0:
+                    System.out.println("Sair");
+                    break;
+                default:
+                    System.out.println("Opção inválida");
             }
         }
         while (opcao != 0);
